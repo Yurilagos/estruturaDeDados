@@ -2,41 +2,42 @@ package lista;
 
 public class Lista {
 
-	private Produto[] listaProdutos = new Produto[10];
+	private Produto[] listProduct = new Produto[5];
 	private int countSize = 0;
 
 	public void adds(Produto produto) {
-		for (int i = 0; i < listaProdutos.length; i++) {
-			if (listaProdutos[i] == null) {
-				listaProdutos[i] = produto;
+		for (int i = 0; i < listProduct.length; i++) {
+			if (listProduct[i] == null) {
+				listProduct[i] = produto;
+				this.countSize++;
 				break;
-
 			}
-
 		}
+	}
 
+	public void adds(int pos, Produto product) {
+		for (int i = countSize - 1; i >= pos; i--) {
+			listProduct[i + 1] = listProduct[i];
+		}
+		listProduct[pos] = product;
 		this.countSize++;
 	}
 
-	public void adds(int pos, Produto produto) {
-		for (int i = countSize; i >= pos; i--) {
-			listaProdutos[i] = listaProdutos[i+1];
+	public void remove(int position) {
+		for (int i = position; i < countSize - i; i++) {
+			listProduct[i] = listProduct[i + 1];
 		}
-		listaProdutos[pos] = produto;
 
-	}
-
-	public void remove(int pos) {
-		listaProdutos[pos] = null;
+		listProduct[countSize - 1] = null;
 
 		this.countSize--;
 	}
 
 	public boolean contains(Produto produto) {
-		for (int i = 0; i < listaProdutos.length; i++) {
-			if (listaProdutos[i].equals(produto)) {
+		for (int i = 0; i < listProduct.length; i++) {
+			if (listProduct[i].equals(produto)) {
 				return true;
-				
+
 			}
 		}
 		return false;
@@ -44,14 +45,13 @@ public class Lista {
 	}
 
 	public int search(Produto produto) {
-		for (int i = 0; i < listaProdutos.length; i++) {
-			if(listaProdutos[i].equals(produto)){
+		for (int i = 0; i < listProduct.length; i++) {
+			if (listProduct[i].equals(produto)) {
 				return i;
 			}
-			
+
 		}
-		
-		
+
 		return 0;
 	}
 
@@ -60,6 +60,15 @@ public class Lista {
 
 	}
 
-}
+	public String toString() {
+		String tmp = "";
 
-	
+		for (int i = 0; i < countSize; i++) {
+			tmp += listProduct[i].getNome() + " ";
+		}
+
+		return tmp;
+
+	}
+
+}
