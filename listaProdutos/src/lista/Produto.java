@@ -1,7 +1,7 @@
 package lista;
 
 public class Produto {
-
+	
 	private String nome;
 
 	public String getNome() {
@@ -15,5 +15,20 @@ public class Produto {
 	public String toString(){
 		return this.nome;
 	}
+	
+
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

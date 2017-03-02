@@ -1,74 +1,103 @@
 package lista;
 
 public class Lista {
-
-	private Produto[] listProduct = new Produto[5];
+	
+	private Produto[] listaProdutos = new Produto[2];
 	private int countSize = 0;
-
-	public void adds(Produto produto) {
-		for (int i = 0; i < listProduct.length; i++) {
-			if (listProduct[i] == null) {
-				listProduct[i] = produto;
+	
+	public void add(Produto produto){
+		
+		this.giveMeMoreSpace();
+		
+		for(int i = 0; i < listaProdutos.length; i++){
+			if(listaProdutos[i] == null){
+				listaProdutos[i] = produto;
 				this.countSize++;
 				break;
 			}
 		}
+		
+		//listaProdutos[0] = produto;
 	}
-
-	public void adds(int pos, Produto product) {
-		for (int i = countSize - 1; i >= pos; i--) {
-			listProduct[i + 1] = listProduct[i];
+	
+	public void add(int pos, Produto produto){
+		
+		this.giveMeMoreSpace();
+		
+		for(int i = countSize - 1; i >= pos; i--){
+			listaProdutos[i + 1] = listaProdutos[i];
 		}
-		listProduct[pos] = product;
+		
+		listaProdutos[pos] = produto;
+		
 		this.countSize++;
+		
 	}
-
-	public void remove(int position) {
-		for (int i = position; i < countSize - i; i++) {
-			listProduct[i] = listProduct[i + 1];
+	
+	private void giveMeMoreSpace(){
+		if(this.countSize == this.listaProdutos.length){
+			
+			System.out.println("Aumentou...");
+			
+			Produto[] newList = new Produto[listaProdutos.length * 2];
+			for(int i = 0; i < listaProdutos.length; i++){
+				newList[i] = listaProdutos[i];
+			}
+			
+			this.listaProdutos = newList;
+			
 		}
-
-		listProduct[countSize - 1] = null;
-
+	}
+	
+	public void remove(int pos){
+		
+		for(int i = pos; i < countSize - 1; i++){
+			listaProdutos[i] = listaProdutos[i + 1];
+		}
+		
+		listaProdutos[countSize - 1] = null;
+		
 		this.countSize--;
 	}
-
-	public boolean contains(Produto produto) {
-		for (int i = 0; i < listProduct.length; i++) {
-			if (listProduct[i].equals(produto)) {
-				return true;
-
-			}
-		}
+	
+	public boolean contains(Produto produto){
 		return false;
-
 	}
-
-	public int search(Produto produto) {
-		for (int i = 0; i < listProduct.length; i++) {
-			if (listProduct[i].equals(produto)) {
-				return i;
-			}
-
-		}
-
+	
+	public int search(Produto produto){
 		return 0;
 	}
-
-	public int size() {
+	
+	public int size(){
 		return this.countSize;
-
 	}
-
-	public String toString() {
+	
+	public String toString(){
+		
 		String tmp = "";
-
-		for (int i = 0; i < countSize; i++) {
-			tmp += listProduct[i].getNome() + " ";
+		
+		for(int i = 0; i < countSize; i++){
+			tmp += listaProdutos[i].getNome() + " ";
 		}
-
+		
 		return tmp;
-
+		
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
