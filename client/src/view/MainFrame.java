@@ -37,6 +37,7 @@ public class MainFrame extends JFrame {
 		setLayout(new GridBagLayout());
 		buildComponents();
 		buildMenu();
+		setTitle("Gestão de Clientes");
 		setSize(400, 300); // Define tamanho da janela.
 		setIconImage();
 		setMinimumSize(new Dimension(400, 300));
@@ -71,10 +72,22 @@ public class MainFrame extends JFrame {
 		panel.add(searchField, new GBC(1, 0).horizontal());
 
 		JScrollPane scrollPane = new JScrollPane();
+		
+		
+		
 		JTable table = new JTable();
+
 		scrollPane.add(table);
 		panel.add(scrollPane, new GBC(0, 1).gridwh(2, 1).both());
 
+		
+		
+		 
+		JScrollPane scroll = new JScrollPane();
+		scroll.setViewportView(table);
+		
+		
+		
 		add(panel, new GBC(0, 0).both());
 
 	}
@@ -85,7 +98,7 @@ public class MainFrame extends JFrame {
 	private void buildButtonPanel() {
 		JPanel panel = new JPanel(new GridBagLayout());
 		JButton newBotton = new JButton("Novo");
-		panel.add(newBotton, new GBC(0, 0));
+		panel.add(newBotton, new GBC(0, 0).both());
 		newBotton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -101,7 +114,7 @@ public class MainFrame extends JFrame {
 		panel.add(removeBotton, new GBC(0, 2));
 		
 		
-		add(panel, new GBC(1, 0));
+		add(panel, new GBC(1, 0).top());
 
 	}
 
