@@ -58,9 +58,9 @@ public class ListaEncadeada {
 
 	public void removePosition(int position) {
 		if (position == 0) {
-			this.removeInicio();
+			this.removeHead();
 		}else if(position == this.countSize -1){
-			this.removeFinal();
+			this.removeTail();
 		}else{
 			Node previousNo = this.getNode(position - 1);
 			previousNo.setNext(this.getNode(position + 1));
@@ -73,7 +73,7 @@ public class ListaEncadeada {
 
 	}
 	
-	public void removeInicio(){
+	public void removeHead(){
 		Node no = this.first;
 		this.first = no.getNext();
 		no.setNext(null);
@@ -81,7 +81,7 @@ public class ListaEncadeada {
 		
 	}
 	
-	public void removeFinal(){
+	public void removeTail(){
 		this.last = this.getNode(countSize-2);
 		this.last.setNext(null);
 		
@@ -90,7 +90,7 @@ public class ListaEncadeada {
 		
 	}
 
-	public void trocar(int posAtual, int posFinal) {
+	public void changeNode (int posAtual, int posFinal) {
 		
 		Node no1 = this.getNode(posAtual);
 		Node no2 = this.getNode(posFinal);
@@ -104,7 +104,7 @@ public class ListaEncadeada {
 
 	}
 
-	public int tamanho() {
+	public int sizeList() {
 		return 0;
 	}
 
